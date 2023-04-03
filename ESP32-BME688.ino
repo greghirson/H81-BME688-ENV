@@ -18,12 +18,14 @@ const char* password = "XXXXXXX"; // replace with password from privatedetails.t
 const int mqttPort = 1883;
 const char* mqttServer = "172.16.9.60";
 
+
+
 String sensorType = "BME-688";
 
 //OAK = 2, CSU = 3
 
-String sensorID = "2";
-const char* topic = "warehouse/OAK/env";
+String sensorID = "3";
+const char* topic = "warehouse/CSU/env";
 
 long lastMsg = 0;
 
@@ -105,8 +107,9 @@ void loop() {
   if ((WiFi.status() != WL_CONNECTED) && (currentMillis - previousMillis) >= interval) {
     Serial.print(millis());
     Serial.println(" Reconnecting to WiFi...");
-    WiFi.disconnect();
-    WiFi.reconnect();
+    ESP.restart();
+//    WiFi.disconnect();
+//    WiFi.reconnect();
     previousMillis = currentMillis;
   }
 
